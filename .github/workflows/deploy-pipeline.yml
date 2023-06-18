@@ -172,8 +172,8 @@ jobs:
         run: |
           aws ecr create-repository --repository-name ${{ env.IMAGE_NAME }}
 
- # Start self-hosted EC2 runner
- start_runner:
+# Start self-hosted EC2 runner
+start_runner:
   name: Start self-hosted EC2 runner
   needs: 
     - configure_aws_credentials
@@ -189,7 +189,6 @@ jobs:
           echo "runner-running=true" >> $GITHUB_ENV
         else
           echo "runner-running=false" >> $GITHUB_ENV
-        fi
 
     - name: Start EC2 runner
       if: ${{ env.runner-running != 'true' }}
@@ -211,8 +210,6 @@ jobs:
   outputs:
     label: ${{ steps.start-ec2-runner.outputs.label }}
     ec2-instance-id: ${{ steps.start-ec2-runner.outputs.ec2-instance-id }}
-
-
 
   
   # Build and push Docker image to ECR
