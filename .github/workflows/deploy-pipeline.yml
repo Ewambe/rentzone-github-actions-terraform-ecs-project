@@ -173,7 +173,7 @@ jobs:
           aws ecr create-repository --repository-name ${{ env.IMAGE_NAME }}
 
 # Start self-hosted EC2 runner
-start_runner:
+ start_runner:
   name: Start self-hosted EC2 runner
   needs: 
     - configure_aws_credentials
