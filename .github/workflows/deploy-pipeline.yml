@@ -278,9 +278,9 @@ jobs:
     steps:
       - name: Export environment variable values to file
         env:
-          DOMAIN_NAME: ${{ needs.deploy_aws_infrastructure.outputs.domain_name }}
-          RDS_ENDPOINT: ${{ needs.deploy_aws_infrastructure.outputs.rds_endpoint }}
-          ENVIRONMENT_FILE_NAME: ${{ needs.deploy_aws_infrastructure.outputs.environment_file_name }}
+          DOMAIN_NAME: ${{ needs.deploy_aws_infrastructure.outputs.DOMAIN_NAME }}
+          RDS_ENDPOINT: ${{ needs.deploy_aws_infrastructure.outputs.RDS_ENDPOINT }}
+          ENVIRONMENT_FILE_NAME: ${{ needs.deploy_aws_infrastructure.outputs.ENVIRONMENT_FILE_NAME }}
         run: |
           echo "PERSONAL_ACCESS_TOKEN=${{ secrets.PERSONAL_ACCESS_TOKEN }}" > ${{ env.ENVIRONMENT_FILE_NAME }}
           echo "GITHUB_USERNAME=${{ env.GITHUB_USERNAME }}" >> ${{ env.ENVIRONMENT_FILE_NAME }}
@@ -295,8 +295,8 @@ jobs:
 
       - name: Upload environment file to S3
         env:
-          ENVIRONMENT_FILE_NAME: ${{ needs.deploy_aws_infrastructure.outputs.environment_file_name }}
-          ENV_FILE_BUCKET_NAME: ${{ needs.deploy_aws_infrastructure.outputs.env_file_bucket_name }}
+          ENVIRONMENT_FILE_NAME: ${{ needs.deploy_aws_infrastructure.outputs.ENVIRONMENT_FILE_NAME }}
+          ENV_FILE_BUCKET_NAME: ${{ needs.deploy_aws_infrastructure.outputs.ENV_FILE_BUCKET_NAME }}
         run: aws s3 cp ${{ env.ENVIRONMENT_FILE_NAME }} s3://${{ env.ENV_FILE_BUCKET_NAME }}/${{ env.ENVIRONMENT_FILE_NAME }} s3://${{ env.ENV_FILE_BUCKET_NAME }}
 
   # Migrate data into RDS database with Flyway
