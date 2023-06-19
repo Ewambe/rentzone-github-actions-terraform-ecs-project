@@ -26,7 +26,7 @@ domain_name       = "ambella.link"
 alternative_names = "*.ambella.link"
 
 # s3 variables
-env_file_bucket_name = "mbella-rentzoneapp-env-file-bucket"
+env_file_bucket_name = "mbella5050-rentzoneapp-env-file-bucket"
 env_file_name        = "env-variables-file.env"
 
 # ecs variables(image name is the docker name i want to use)
